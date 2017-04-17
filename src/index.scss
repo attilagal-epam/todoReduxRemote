@@ -1,0 +1,26 @@
+body {
+  padding: 10px;
+  background-color: #eefaee;
+}
+
+.todoinput {
+  width: 80ex;
+}
+
+.todolist {
+  list-style-type: none;
+  padding: 0;
+
+  &__item {
+    line-height: 2em;
+  }
+
+  &__input {
+    display: inline-block;
+    width: 80ex;
+
+    &:hover {
+      background-color: lime;
+    }
+  }
+}
