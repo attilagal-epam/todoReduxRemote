@@ -5,11 +5,14 @@ export default class TodoApp {
     const mapStateToThis = (state) => {
       console.log('STATE  ', state);
       return {
-        todos: state
+        todos: state/*,
+        hasErrored: state.itemsHasErrored,
+        isLoading: state.itemsIsLoading*/
       };
     };
 
     const unsubscribe = $ngRedux.connect(mapStateToThis, actionMethods)(this);
+    this.fetchData('http://localhost:3000/todos');
 //    $scope.$on('$destroy', unsubscribe);
   }
 

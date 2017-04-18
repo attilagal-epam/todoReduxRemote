@@ -20,6 +20,8 @@ export default function (state = [], action) {
             return state.filter(t => t.id !== action.value.id);
         case "TODO_TOGGLE":
             return state.map(t => t.id === action.value.id ? Object.assign(t, {done: !t.done}) : t);
+        case "TODOS_RECEIVED":
+          return action.value;
         default:
             return state;
     }
