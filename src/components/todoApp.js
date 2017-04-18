@@ -12,7 +12,7 @@ export default class TodoApp {
     };
 
     const unsubscribe = $ngRedux.connect(mapStateToThis, actionMethods)(this);
-    this.fetchData('http://localhost:3000/todos');
+    this.fetchData();
 //    $scope.$on('$destroy', unsubscribe);
   }
 

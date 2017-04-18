@@ -22,6 +22,8 @@ export default function (state = [], action) {
             return state.map(t => t.id === action.value.id ? Object.assign(t, {done: !t.done}) : t);
         case "TODOS_RECEIVED":
           return action.value;
+        case "TODOS_ADDED":
+          return state.concat(action.value);
         default:
             return state;
     }
