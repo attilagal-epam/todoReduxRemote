@@ -23,14 +23,9 @@
 import 'redux';
 
 const serverUrl = 'http://localhost:3000/todos';
-const createPayload = (entity) => {
-  const data = new FormData();
-  data.append( "json", JSON.stringify( entity ) );
-  return data;
-};
-
 const createTodoPayload = (todoTitle) => {
-  return createPayload({
+  return JSON.stringify({
+    id: null,
     title: todoTitle,
     done: false
   });
@@ -41,6 +36,10 @@ const addTodo = (title) => {
 //    dispatch(itemsIsLoading(true));
     fetch(serverUrl, {
       method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
       body: createTodoPayload(title)
     })
       .then((response) => {
