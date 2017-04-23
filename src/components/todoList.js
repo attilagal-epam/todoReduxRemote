@@ -5,7 +5,7 @@ angular.module('todoApp').component('todoList', {
       <li class="todolist__item" ng-repeat="item in $ctrl.items track by item.id">
         <label class="todolist__input">
           <input type="checkbox"
-                 ng-model="toggle"
+                 ng-model="item.done"
                  ng-change="$ctrl.onToggle({todo: item})">
 
           <span>{{item.title}}</span>
