@@ -1,25 +1,3 @@
-//const actionMethods = {
-//    addTodo(title) {
-//        return {
-//            type: 'TODO_ADDED',
-//            value: title
-//        };
-//    },
-//
-//    deleteTodo(todo) {
-//        return {
-//            type: 'TODO_REMOVED',
-//            value: todo
-//        };
-//    },
-//
-//    toggleTodo(todo) {
-//        return {
-//            type: 'TODO_TOGGLED',
-//            value: todo
-//        };
-//    }
-//};
 import 'redux';
 
 const serverUrl = 'http://localhost:3000/todos';
@@ -29,10 +7,13 @@ const createTodoPayload = (todoTitle) => {
     done: false
   });
 };
+
+const itemsIsLoading = (isLoading) => ({ type: 'ITEMS_LOADING', value: isLoading});
+
 //const addTodo = (title) => ({ type: 'TODO_ADD', value: title});
 const addTodo = (title) => {
   return (dispatch) => {
-//    dispatch(itemsIsLoading(true));
+    dispatch(itemsIsLoading(true));
     fetch(serverUrl, {
       method: "POST",
       headers: {
@@ -45,7 +26,7 @@ const addTodo = (title) => {
         if (!response.ok) {
           throw Error(response.statusText);
         }
-//        dispatch(itemsIsLoading(false));
+        dispatch(itemsIsLoading(false));
         return response;
       })
       .then((response) => response.json())
@@ -100,19 +81,18 @@ const toggleTodo = (todo) => {
   };
 };
 
-
 const todoToggled = (todo) => ({ type: 'TODO_TOGGLED', value: todo});
 
 const todosFetchedSuccess = (todos) => ({ type: 'TODOS_RECEIVED', value: todos});
 const fetchData = () => {
   return (dispatch) => {
-//    dispatch(itemsIsLoading(true));
+    dispatch(itemsIsLoading(true));
     fetch(serverUrl)
       .then((response) => {
         if (!response.ok) {
           throw Error(response.statusText);
         }
-//        dispatch(itemsIsLoading(false));
+        dispatch(itemsIsLoading(false));
         return response;
       })
       .then((response) => response.json())

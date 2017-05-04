@@ -5,9 +5,9 @@ export default class TodoApp {
     const mapStateToThis = (state) => {
       console.log('STATE  ', state);
       return {
-        todos: state/*,
-        hasErrored: state.itemsHasErrored,
-        isLoading: state.itemsIsLoading*/
+        todos: state.todos,
+        //hasErrored: state.itemsHasErrored,
+        isLoading: state.isItemsLoading
       };
     };
 
@@ -25,7 +25,8 @@ angular.module('todoApp').component('app', {
   controller: TodoApp,
   template: `
     <todo-input on-enter="$ctrl.addTodo(todo)"></todo-input>
-    <br>{{$ctrl.todos}}
+    <br>{{$ctrl.todos}}<br>
+    LOADING:<span ng-show="$ctrl.isLoading"></span><br>
     <todo-list items="$ctrl.todos" on-toggle="$ctrl.toggleTodo(todo)" on-delete="$ctrl.deleteTodo(todo)"></todo-list>
     <hr>
     <pre>Application state: {{$ctrl.todos|json}}</pre>
